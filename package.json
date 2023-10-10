@@ -1,0 +1,26 @@
+{
+  "name": "sex-well-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc",
+    "start": "npm run compile && node ./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@apollo/server": "^4.9.4",
+    "@prisma/client": "^5.4.2",
+    "graphql": "^16.8.1",
+    "sequelize": "^6.33.0",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.2",
+    "prisma": "^5.4.2",
+    "typescript": "^5.2.2"
+  }
+}
