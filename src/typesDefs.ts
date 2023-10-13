@@ -26,6 +26,11 @@ export const typeDefs = `#graphql
         data: String,
     }
 
+    input User {
+        username: String,
+        password: String,
+    }
+
   # This "Book" type defines the queryable fields for every book in our data source.
 
   # The "Query" type is special: it lists all of the available queries that
@@ -34,11 +39,14 @@ export const typeDefs = `#graphql
   type Query {
       GetEventById(UUID: String): Event
       GetEvents: [Event]
+      VerifyUser(user: User): Boolean
   }
 
   type Mutation {
       AddEvent(entry: EventInput): Boolean
       UpdateEvent(entry: EventUpdate): Boolean
       DeleteEvent(UUID: String): Boolean
+      AddUser(user: User): Boolean
+      DeleteUser(user: User): Boolean
   }
 `;

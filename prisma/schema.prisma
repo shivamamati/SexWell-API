@@ -14,3 +14,8 @@ model entrys {
   date_time String
   data      String
 }
+
+model users {
+  username String @id
+  password String
+}

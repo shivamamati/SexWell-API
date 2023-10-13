@@ -16,19 +16,6 @@ export const resolvers = {
         GetEvents: () => {
             return prisma.entrys.findMany();
         },
-        VerifyUser: async (_: any, { user } ) => {
-            const hash = await prisma.users.findUnique({
-                where: {
-                    username:  user.username
-                }
-            });
-            const result = await bcrypt.compare(user.password, hash.password);
-            if (result) {
-                return true;
-            } else {
-                return false;
-            }
-        }
     },
 
     Mutation: {
@@ -81,10 +68,16 @@ export const resolvers = {
                 });
         },
         AddUser: async (_: any, { user }) => {
+            let hash_password: any = null; 
+            console.log(await bcrypt.hash(user.password, 10, function(err, hash) {
+                console.log(hash);
+                hash_password = hash
+            }));
+
             return await prisma.users.create({
                 data: {
                     username: user.username,
-                    password: await bcrypt.hash(user.password, 10), 
+                    password: user.password,
                 }
             }).then(() => {
                 console.log("created user successfully");
